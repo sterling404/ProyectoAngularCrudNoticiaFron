@@ -1,0 +1,57 @@
+<form class="example-form p-20 ">
+    <div class="contain">
+        <h4 class="title"> Crear noticia</h4>
+        <mat-form-field class="example-full-width">
+            <mat-label>Titulo de la noticia</mat-label>
+            <input matInput placeholder="Ex. Pizza">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Bajada de titulo</mat-label>
+            <input matInput placeholder="Ex. Pizza">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <mat-label>Contenido</mat-label>
+            <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
+        </mat-form-field>
+
+
+        <mat-form-field>
+            <mat-label>Favorite food</mat-label>
+            <mat-select>
+                <mat-option *ngFor="let city of cities" [value]="city.name">
+                    {{city.id}} - {{city.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <section class="example-section">
+            <input type="checkbox">
+            <mat-checkbox class="example-margin">noticia destacada</mat-checkbox>
+        </section>
+        <h4 class="title"> Informacion del publicador</h4>
+        <div class="data-publisher">
+            <mat-form-field class="example-full-width">
+                <mat-label>Nombre y Apellido</mat-label>
+                <input matInput placeholder="Ex. Pizza">
+            </mat-form-field>
+    
+            <mat-form-field>
+                <mat-label>Cargo</mat-label>
+                <mat-select>
+                    <mat-option *ngFor="let city of cities" [value]="city.name">
+                        {{city.id}} - {{city.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <section>
+
+            <div class="example-button-row">
+                <button mat-raised-button color="primary">Guardar</button>
+
+            </div>
+        </section>
+    </div>
+</form>
