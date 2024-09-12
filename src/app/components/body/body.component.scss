@@ -5,6 +5,19 @@
 
   
 }
+.example-checkbox{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.example-checkbox span{
+  font-size: 18px;
+}
+.example-checkbox input{
+  font-size: 30px;
+
+}
 .contain{
   width: 100%;
   border-radius: 10px;
@@ -19,12 +32,10 @@
 
 .example-margin {
   
-  color: #000;
+  color: #000 !important;
 }
 .data-publisher {
-  display: grid;
-  grid-template-columns: auto auto;
-  gap: 20px;
+  
 }
 
 
@@ -47,8 +58,10 @@ section {
 }
 
 .example-button-row {
-  display: table-cell;
-  max-width: 600px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+
 }
 
 .example-button-row .mat-mdc-button-base {

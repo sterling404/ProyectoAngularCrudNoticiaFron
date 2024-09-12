@@ -16,5 +16,8 @@ export class AppComponent {
   changeSubTitle(inputData:string){
     this.SubTitle= inputData;
   }
+  showFormValue(data:any){
+    console.log(data)
+  }
 
 }

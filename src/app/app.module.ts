@@ -11,7 +11,7 @@ import { BodyComponent } from './components/body/body.component';
 import {Component} from '@angular/core';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import {MatIconModule} from '@angular/material/icon';
@@ -25,6 +25,10 @@ import { TestComponent } from './components/test/test.component';
 import {ThemePalette} from '@angular/material/core';
 import {NgFor} from '@angular/common';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+
+import {MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatDialogModule} from '@angular/material/dialog';
+import {NgIf} from '@angular/common';
+
 
 
 
@@ -50,7 +54,14 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
      MatIconModule,
      MatCheckboxModule, 
      NgFor,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    MatButtonModule,
+    NgIf,
+    MatDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

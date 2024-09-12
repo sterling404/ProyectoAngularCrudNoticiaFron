@@ -1,4 +1,4 @@
 <app-header [title]="title" [SubTitle]="SubTitle" (SubTitleEvent)="changeSubTitle($event)" (TitleEvent)=" changeTitle($event)">
 </app-header>
-<app-body></app-body>
-<!-- <app-footer></app-footer> -->
+<app-body (sendFormEvet)="showFormValue($event)"></app-body>
+<app-footer></app-footer>

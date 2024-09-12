@@ -1,57 +1,68 @@
-<form class="example-form p-20 ">
+<form class="example-form p-20 " [formGroup]="myForm">
     <div class="contain">
         <h4 class="title"> Crear noticia</h4>
+
         <mat-form-field class="example-full-width">
             <mat-label>Titulo de la noticia</mat-label>
-            <input matInput placeholder="Ex. Pizza">
+            <input matInput formControlName="title" placeholder="Teremoto 2010">
+            <mat-error *ngIf="title.invalid && (title.dirty || title.touched)">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
+
         <mat-form-field class="example-full-width">
             <mat-label>Bajada de titulo</mat-label>
-            <input matInput placeholder="Ex. Pizza">
+            <input formControlName="SubTitle" name="SubTitle" matInput placeholder="Ex. Pizza">
+            <mat-error *ngIf="SubTitle.invalid">{{getErrorMessage()}}</mat-error>
+
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
             <mat-label>Contenido</mat-label>
-            <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
+            <textarea formControlName="conten" matInput placeholder="Ex. It makes me feel..."></textarea>
+            <mat-error *ngIf="conten.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
 
 
         <mat-form-field>
-            <mat-label>Favorite food</mat-label>
-            <mat-select>
-                <mat-option *ngFor="let city of cities" [value]="city.name">
-                    {{city.id}} - {{city.name}}
+            <mat-label>Tipo</mat-label>
+            <mat-select formGroupName="typeNews" name='typeNews' >
+                <mat-option  *ngFor="let type of types" [value]="type.name">
+                    {{type.id}} - {{type.name}}
                 </mat-option>
             </mat-select>
+            <mat-error *ngIf="typeNews.invalid && (title.dirty || title.touched)">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
 
-        <section class="example-section">
-            <input type="checkbox">
-            <mat-checkbox class="example-margin">noticia destacada</mat-checkbox>
+        <section class="example-checkbox">
+            <input formGroupName="topnews"  type="checkbox" class="example-margin" />
+            <span>noticia destacada</span>
+            <mat-error *ngIf="topnews.invalid && (title.dirty || title.touched)">{{getErrorMessage()}}</mat-error>
         </section>
         <h4 class="title"> Informacion del publicador</h4>
         <div class="data-publisher">
             <mat-form-field class="example-full-width">
                 <mat-label>Nombre y Apellido</mat-label>
-                <input matInput placeholder="Ex. Pizza">
+                <input formControlName="publisherName" matInput placeholder="Louvendy">
+                <mat-error *ngIf="publisherName.invalid && (publisherName.dirty || publisherName.touched)">
+                    <div *ngIf="publisherName.hasError('required')">
+                        {{getErrorMessage()}}
+                    </div>
+                    <div *ngIf="publisherName.hasError('pattern')">
+                        El campo deve contener solo letras
+                    </div>
+
+                </mat-error>
             </mat-form-field>
-    
-            <mat-form-field>
-                <mat-label>Cargo</mat-label>
-                <mat-select>
-                    <mat-option *ngFor="let city of cities" [value]="city.name">
-                        {{city.id}} - {{city.name}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
+
+            
         </div>
 
-        <section>
 
-            <div class="example-button-row">
-                <button mat-raised-button color="primary">Guardar</button>
 
-            </div>
-        </section>
+        <div class="example-button-row">
+            <button mat-raised-button color="primary" (click)=" saveForm()">Guardar</button>
+
+        </div>
+
     </div>
 </form>
+{{myForm.value | json}}
