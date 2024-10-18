@@ -1,0 +1,31 @@
+.header {
+    background: #5941A9;
+    color: #fff;
+    height: 80px;
+    font-weight: 600;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10rem;
+}
+.session{
+    display: flex;
+    gap:10px;
+}
+.buttonAddNews{
+    background: #0e0d0d66
+}
+.contenPosts {
+    display: grid;
+    
+    grid-template-columns: repeat(auto-fill, minmax(300px, 2fr));
+    gap: 20px;
+}
+.section {
+    padding: 1rem;
+}
+.buttonaction{
+display: flex;
+gap: 10px;
+}

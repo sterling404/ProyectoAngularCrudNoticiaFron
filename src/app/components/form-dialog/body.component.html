@@ -24,7 +24,7 @@
 
         <mat-form-field>
             <mat-label>Tipo</mat-label>
-            <mat-select formGroupName="typeNews" name='typeNews' >
+            <mat-select formControlName="typeNews" name='typeNews' >
                 <mat-option  *ngFor="let type of types" [value]="type.name">
                     {{type.id}} - {{type.name}}
                 </mat-option>
@@ -33,7 +33,7 @@
         </mat-form-field>
 
         <section class="example-checkbox">
-            <input formGroupName="topnews"  type="checkbox" class="example-margin" />
+            <input formControlName="topnews"  type=" vsº    " class="example-margin" />
             <span>noticia destacada</span>
             <mat-error *ngIf="topnews.invalid && (title.dirty || title.touched)">{{getErrorMessage()}}</mat-error>
         </section>
@@ -53,16 +53,25 @@
                 </mat-error>
             </mat-form-field>
 
+            <mat-form-field>
+                <mat-label>Profecion</mat-label>
+                <mat-select formControlName="publisher_job" name='publisher_job' >
+                    <mat-option  *ngFor="let job of jobs" [value]="job.name">
+                        {{job.id}} - {{job.name}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="typeNews.invalid && (title.dirty || title.touched)">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
             
         </div>
 
 
-
-        <div class="example-button-row">
+        <mat-dialog-actions align="end">
+            <button mat-raised-button  mat-dialog-close>Cancel</button>
+            
             <button mat-raised-button color="primary" (click)=" saveForm()">Guardar</button>
-
-        </div>
+        </mat-dialog-actions>
+        
 
     </div>
 </form>
-{{myForm.value | json}}
