@@ -1,8 +1,9 @@
-import { Component, EventEmitter, Output,Inject, } from '@angular/core';
+import { Component, EventEmitter, Output,Inject, OnInit, OnDestroy, } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {ThemePalette} from '@angular/material/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { typeBlog, jobs } from 'src/app/interface/app-interface';
+import { Editor } from 'ngx-editor';
 
 
 
@@ -11,8 +12,15 @@ import { typeBlog, jobs } from 'src/app/interface/app-interface';
   templateUrl: './body.component.html',
   styleUrls: ['./body.component.scss']
 })
-export class FormDialogComponent {
+export class FormDialogComponent implements OnInit {
   @Output() sendFormEvet: EventEmitter<any> = new EventEmitter();
+ 
+  
+
+  ngOnInit(): void {
+    
+    
+  }
   
   constructor(private dialogRef: MatDialogRef<FormDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any){
     this.myForm = new FormGroup({
@@ -25,6 +33,12 @@ export class FormDialogComponent {
       publisher_job: new FormControl(data?.publisher_job || null, [Validators.required])
     });
   }
+  // ngOnDestroy(): void {
+  //   if (this.editor) {
+  //     this.editor.destroy();
+  //     throw new Error('Method not implemented.');
+  //   }
+  // }
   types:typeBlog[] =[
     {
       id:1,
@@ -105,6 +119,10 @@ export class FormDialogComponent {
   getErrorMessage(){
     return'Campo obligatorio';
   }
+  // onContentChange(content: string): void {
+  //   console.log('Editor content changed:', content);
+  //   this.htmlContent = content; // Actualiza la variable con el nuevo contenido
+  // }
   saveForm(){
     if(this.myForm.valid){
       this.dialogRef.close(this.myForm.value)

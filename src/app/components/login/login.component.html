@@ -1,0 +1,19 @@
+
+<div class="contenLogin">
+    <form class="example-form" [formGroup]="loginForm">
+          <h1>Login in Blog</h1>
+          <mat-form-field class="example-full-width">
+            <mat-label>Usuario</mat-label>
+            <input formControlName="email" matInput placeholder="Ingresa tu Usuario" >
+            <mat-error *ngIf="email.invalid">El usuario es requerido</mat-error>
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-label>Contraseña</mat-label>
+            <input formControlName="password" type="password" autocomplete="on" matInput placeholder="Ingresa tu Contraseña" >
+            <mat-error *ngIf="password.invalid">la contraseña es requerido</mat-error>
+          </mat-form-field>
+          <button mat-raised-button (click)=" login()" color="primary">Inicia secion</button>
+          
+        </form>
+        
+  </div>

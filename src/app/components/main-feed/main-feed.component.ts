@@ -10,6 +10,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { FormDialogComponent } from '../form-dialog/body.component';
 import { MainService } from 'src/app/services/main.service';
 import { Blog } from 'src/app/interface/app-interface';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 // export interface DialogData {
 //   animal: string;
@@ -24,29 +27,47 @@ export class MainFeedComponent implements OnInit {
   blogs!: Blog[];
   blogsupdate!: Blog[];
   isLoading = false;
+  isUserLogde=this.authService.isAuthenticated();
 
-  constructor(public dialog: MatDialog, private service: MainService) {}
+  
+
+ 
+  constructor(public dialog: MatDialog, private service: MainService, private router: Router, private authService:AuthService,private snackBar: MatSnackBar) {}
 
   @Input() title!: string;
   @Input() SubTitle!: string;
   @Output() TitleEvent: EventEmitter<string> = new EventEmitter();
   @Output() SubTitleEvent: EventEmitter<string> = new EventEmitter();
 
-  // animal: string;
-  // name: string;
+  showMessage(message: string) {
+    this.snackBar.open(message)._dismissAfter(3000);
+  }
 
   ngOnInit(): void {
     console.log(this.title);
     console.log(this.SubTitle);
     this.getAllBlogs();
+    
+  }
+
+  goToBlog(blogId:number){
+    this.router.navigate(['/blog',blogId])
   }
   getAllBlogs() {
     this.isLoading = true;
-    this.service.getAll().subscribe((response) => {
-      this.blogs = response;
-      this.isLoading = false;
-      console.log(this.blogs);
-    });
+    this.service.getAll().subscribe(
+      {next:(response) => {
+          this.blogs = response;
+          console.log(this.blogs);
+        },
+        error:()=>{
+          this.isLoading=false;
+          this.showMessage('Error al cargar la noticia ')
+        }
+
+
+
+    })
   }
   
   buttonPressed() {
@@ -87,8 +108,16 @@ export class MainFeedComponent implements OnInit {
       console.log(this.blogsupdate);
     });
   }
-
+  logout(){
+    this.authService.deleteToken();
+    this.router.navigate(['/login'])
+  }
+  login(){
+    this.router.navigate(['/login'])
+  }
   openUpdateDialog(id: number | undefined) {
+    const selectedBlog = this.blogs.find((blog)=> blog.id ===id);
+    console.log(selectedBlog)
     if (id !== undefined) {
       this.isLoading = true;
       this.service.getBlogById(id).subscribe((response) => {

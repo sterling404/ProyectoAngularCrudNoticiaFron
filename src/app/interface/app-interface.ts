@@ -1,13 +1,13 @@
 export interface Blog {
-    id?: number;
+    id: number;
     title: string;
     subtitle: string;
     body: string;
-    reportType: string;
-    isPrimary: boolean;
-    publisherName: string;
-    publisherJob: string;
-    createdAt?: string;
+    report_type: string;
+    is_primary: boolean;
+    publisher_name: string;
+    publisher_job: string;
+    created_at?: string;
   }
   export interface  typeBlog {
     id:number;
@@ -19,3 +19,8 @@ export interface Blog {
     name:string;
     
   }
+  // report_type: 'Educacion',
+  //   is_primary: true,
+  //   publisher_name: 'Louvendy sterling',
+  //   publisher_job: 'Informatico',
+  //   created_at: 

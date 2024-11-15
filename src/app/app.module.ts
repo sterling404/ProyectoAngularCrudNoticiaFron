@@ -17,9 +17,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
-
+import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
 import { MatSelectModule } from '@angular/material/select';
 import { TestComponent } from './components/test/test.component';
+import { NgxEditorModule } from 'ngx-editor';
 
 import { ThemePalette } from '@angular/material/core';
 import { NgFor } from '@angular/common';
@@ -31,7 +32,13 @@ import { NgIf } from '@angular/common';
 import { MainFeedComponent } from './components/main-feed/main-feed.component';
 import {MatCardModule} from '@angular/material/card';
 
+
+
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { SingleViewComponent } from './components/single-view/single-view.component';
+import { CookieService } from 'ngx-cookie-service';
+import { LoginComponent } from './components/login/login.component';
+
 
 @NgModule({
   declarations: [
@@ -40,6 +47,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     FormDialogComponent,
     TestComponent,
     MainFeedComponent,
+    SingleViewComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,9 +74,12 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatDialogModule,
     HttpClientModule,
     MatCardModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatSnackBarModule,
+    NgxEditorModule
+    
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

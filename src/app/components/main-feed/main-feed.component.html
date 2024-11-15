@@ -6,9 +6,13 @@
          <a routerLink="" routerLinkActive="active" href=""> Inicio</a> -->
   </div>
   <div class="session">
-    <button mat-flat-button (click)="buttonPressed()">Inicia secion</button>
-    <!-- <button mat-button (click)="openDialog()">Open dialog</button> -->
+    <div>
+
+      <button mat-flat-button *ngIf="isUserLogde" (click)="logout()">Cerrar sesión</button>
+      <button mat-raised-button *ngIf="!isUserLogde" color="primary" (click)="login()">Inica sesión</button>
+    </div>
     <button
+      *ngIf="isUserLogde"
       mat-raised-button
       color="primary"
       (click)="openDialog()"
@@ -27,13 +31,21 @@
   <h2>Noticias del Dia</h2>
   <div class="contenPosts">
     <mat-card *ngFor="let blog of blogs">
-      <mat-card-content>
-        <h2>{{ blog?.title }}</h2>
-        <div class="buttonaction">
-            <button (click)="openUpdateDialog(blog?.id)"  mat-raised-button color="primary">Editar</button>
-            <button (click)="deleteBlog(blog?.id)" mat-raised-button color="warn">Eliminar</button>
+    <div  >
+
+      <a  [routerLink]="'/blog/' + blog.id" >
+        
+          <mat-card-content>
+            <h2>{{ blog?.title }}</h2>
+          </mat-card-content>
+        </a>
+        <div *ngIf="isUserLogde" class="buttonaction">
+          <button (click)="openUpdateDialog(blog?.id)"  mat-raised-button color="primary">Editar</button>
+          
+          <button (click)="deleteBlog(blog?.id)" mat-raised-button color="warn">Eliminar</button>
+          
         </div>
-      </mat-card-content>
+      </div>
     </mat-card>
   </div>
 </section>

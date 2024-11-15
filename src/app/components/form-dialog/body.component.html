@@ -14,7 +14,8 @@
             <mat-error *ngIf="SubTitle.invalid">{{getErrorMessage()}}</mat-error>
 
         </mat-form-field>
-
+        
+        
         <mat-form-field class="example-full-width">
             <mat-label>Contenido</mat-label>
             <textarea formControlName="conten" matInput placeholder="Ex. It makes me feel..."></textarea>
@@ -32,11 +33,11 @@
             <mat-error *ngIf="typeNews.invalid && (title.dirty || title.touched)">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
 
-        <section class="example-checkbox">
-            <input formControlName="topnews"  type=" vsº    " class="example-margin" />
-            <span>noticia destacada</span>
-            <mat-error *ngIf="topnews.invalid && (title.dirty || title.touched)">{{getErrorMessage()}}</mat-error>
-        </section>
+        
+        <section class="example-section">
+            <mat-checkbox formControlName="topnews"  class="example-margin">noticia destacada</mat-checkbox>
+            
+          </section>
         <h4 class="title"> Informacion del publicador</h4>
         <div class="data-publisher">
             <mat-form-field class="example-full-width">
