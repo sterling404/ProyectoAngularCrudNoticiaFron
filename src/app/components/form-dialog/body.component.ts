@@ -14,12 +14,12 @@ import { Editor } from 'ngx-editor';
 })
 export class FormDialogComponent implements OnInit {
   @Output() sendFormEvet: EventEmitter<any> = new EventEmitter();
- 
+  editor!: Editor;
   
 
   ngOnInit(): void {
     
-    
+    this.editor = new Editor();
   }
   
   constructor(private dialogRef: MatDialogRef<FormDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any){
@@ -119,6 +119,9 @@ export class FormDialogComponent implements OnInit {
   getErrorMessage(){
     return'Campo obligatorio';
   }
+  ngOnDestroy(): void {
+    this.editor.destroy();
+  }
   // onContentChange(content: string): void {
   //   console.log('Editor content changed:', content);
   //   this.htmlContent = content; // Actualiza la variable con el nuevo contenido
@@ -126,6 +129,7 @@ export class FormDialogComponent implements OnInit {
   saveForm(){
     if(this.myForm.valid){
       this.dialogRef.close(this.myForm.value)
+      console.log(this.myForm.value)
     }else{
       alert('no es valido el formulario')
     }

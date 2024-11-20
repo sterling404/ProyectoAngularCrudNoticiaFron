@@ -18,7 +18,11 @@
         
         <mat-form-field class="example-full-width">
             <mat-label>Contenido</mat-label>
-            <textarea formControlName="conten" matInput placeholder="Ex. It makes me feel..."></textarea>
+            <div class="NgxEditor__Wrapper">
+                <ngx-editor-menu [editor]="editor"> </ngx-editor-menu>
+                <ngx-editor [editor]="editor" formControlName="conten" [placeholder]="'Type here...'"></ngx-editor>
+              </div>
+            <!-- <textarea formControlName="conten" matInput placeholder="Ex. It makes me feel..."></textarea> -->
             <mat-error *ngIf="conten.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
 
