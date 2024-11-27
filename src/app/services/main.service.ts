@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class MainService {
-  URL = 'http://localhost:3000'
+  URL = 'https://apiblog-peach.vercel.app'
   constructor(private http: HttpClient){}
   getAll(): Observable<any>{
 

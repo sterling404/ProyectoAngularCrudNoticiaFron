@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {ThemePalette} from '@angular/material/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { typeBlog, jobs } from 'src/app/interface/app-interface';
-import { Editor } from 'ngx-editor';
+import { Editor, Toolbar } from 'ngx-editor';
 
 
 
@@ -15,11 +15,24 @@ import { Editor } from 'ngx-editor';
 export class FormDialogComponent implements OnInit {
   @Output() sendFormEvet: EventEmitter<any> = new EventEmitter();
   editor!: Editor;
+  toolbar: Toolbar = [];
+
   
 
   ngOnInit(): void {
     
     this.editor = new Editor();
+
+    this.toolbar = [
+      ['bold', 'italic'],
+      ['underline', 'strike'],
+      ['code', 'blockquote'],
+      ['ordered_list', 'bullet_list'],
+      [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
+      ['link', 'image'],
+      ['text_color', 'background_color'],
+      ['align_left', 'align_center', 'align_right', 'align_justify'],
+    ];
   }
   
   constructor(private dialogRef: MatDialogRef<FormDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any){
@@ -39,6 +52,7 @@ export class FormDialogComponent implements OnInit {
   //     throw new Error('Method not implemented.');
   //   }
   // }
+
   types:typeBlog[] =[
     {
       id:1,

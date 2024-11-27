@@ -57,7 +57,7 @@ export class MainFeedComponent implements OnInit {
     this.isLoading = true;
     this.service.getAll().subscribe(
       {next:(response) => {
-          this.blogs = response;
+          this.blogs = response.data;
           console.log(this.blogs);
         },
         error:()=>{
@@ -119,31 +119,32 @@ export class MainFeedComponent implements OnInit {
     const selectedBlog = this.blogs.find((blog)=> blog.id ===id);
     console.log(selectedBlog)
     if (id !== undefined) {
-      this.isLoading = true;
-      this.service.getBlogById(id).subscribe((response) => {
-        this.isLoading = false;
-        if (response) {
-          const dialogRef = this.dialog.open(FormDialogComponent, {
-            data: response 
-          });
-  
-          dialogRef.afterClosed().subscribe((result) => {
-            if (result) {
-              const blogDataUpdate = {
-                title: result.title,
-                subtitle: result.SubTitle,
-                body: result.conten,
-                report_type: result.typeNews,
-                is_primary: result.topnews,
-                publisher_name: result.publisherName,
-                publisher_job: result.publisher_job,
-              };
-              console.log(blogDataUpdate);
-              this.updateBlog(id, blogDataUpdate);
-            }
-          });
-        }
-      });
+      if (selectedBlog) {
+        const dialogRef = this.dialog.open(FormDialogComponent, {
+          data: selectedBlog
+        });
+
+        dialogRef.afterClosed().subscribe((result) => {
+          if (result) {
+            const blogDataUpdate = {
+              title: result.title,
+              subtitle: result.SubTitle,
+              body: result.conten,
+              report_type: result.typeNews,
+              is_primary: result.topnews,
+              publisher_name: result.publisherName,
+              publisher_job: result.publisher_job,
+            };
+            console.log(blogDataUpdate);
+            this.updateBlog(id, blogDataUpdate);
+          }
+        });
+      }
+    //   this.isLoading = true;
+    //   this.service.getBlogById(id).subscribe((response) => {
+    //     this.isLoading = false;
+    //   }
+    // );
     }
   }
   createBlog(data: any) {

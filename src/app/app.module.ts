@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -20,6 +20,7 @@ import { MatButtonModule } from '@angular/material/button';
 import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
 import { MatSelectModule } from '@angular/material/select';
 import { TestComponent } from './components/test/test.component';
+
 import { NgxEditorModule } from 'ngx-editor';
 
 import { ThemePalette } from '@angular/material/core';
@@ -81,5 +82,6 @@ import { LoginComponent } from './components/login/login.component';
   ],
   providers: [CookieService],
   bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}
