@@ -28,7 +28,11 @@ export class MainFeedComponent implements OnInit {
   blogsupdate!: Blog[];
   isLoading = false;
   isUserLogde=this.authService.isAuthenticated();
+  showCarMenu: boolean = false; 
 
+  toggleCarMenu() {
+    this.showCarMenu = !this.showCarMenu; 
+  }
   
 
  

@@ -12,6 +12,11 @@
             <input formControlName="password" type="password" autocomplete="on" matInput placeholder="Ingresa tu Contraseña" >
             <mat-error *ngIf="password.invalid">la contraseña es requerido</mat-error>
           </mat-form-field>
+          <li class="linkIncio">
+            <a routerLink="/" routerLinkActive="active"
+              >Regresar al inicio</a
+            >
+          </li>
           <button mat-raised-button (click)=" login()" color="primary">Inicia secion</button>
           
         </form>

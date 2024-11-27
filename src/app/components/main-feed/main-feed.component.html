@@ -1,49 +1,76 @@
 <div class="header">
   <h1>App de noticia</h1>
-  <!-- {{SubTitle}} -->
   <div>
-    <!-- <a routerLink="" routerLinkActive="active" href=""> Inicio</a>
-         <a routerLink="" routerLinkActive="active" href=""> Inicio</a> -->
+   
   </div>
   <div class="session">
-    <div>
-
-      <button mat-flat-button *ngIf="isUserLogde" (click)="logout()">Cerrar sesión</button>
-      <button mat-raised-button *ngIf="!isUserLogde" color="primary" (click)="login()">Inica sesión</button>
-    </div>
-    <button
-      *ngIf="isUserLogde"
-      mat-raised-button
-      color="primary"
-      (click)="openDialog()"
-      class="buttonAddNews"
+    <mat-icon
+    class="iconMenu"
+    (click)="toggleCarMenu()"
+      aria-hidden="false"
+      matBadge="15"
+      aria-label="Example home icon"
+      fontIcon=""
     >
-      Crear noticia
-    </button>
+      menu
+    </mat-icon>
+    <mat-card appearance="outlined" class="Contenbutones" *ngIf="showCarMenu">
+      <mat-card-content class="butones">
+        <div>
+          <button
+            mat-flat-button
+            color="warn"
+            *ngIf="isUserLogde"
+            (click)="logout()"
+          >
+            Cerrar sesión
+          </button>
+          <button
+            mat-raised-button
+            *ngIf="!isUserLogde"
+            color="primary"
+            (click)="login()"
+          >
+            Inica sesión
+          </button>
+        </div>
+        <button
+          *ngIf="isUserLogde"
+          mat-raised-button
+          color="primary"
+          (click)="openDialog()"
+          class="buttonAddNews"
+        >
+          Crear noticia
+        </button>
+      </mat-card-content>
+    </mat-card>
   </div>
 </div>
 
-<!-- <div style="display: flex; gap: 5px" *ngIf="isLoading">
-  <mat-spinner style="margin: 30px" diameter="30"></mat-spinner>
-  <div style="margin-top: 35px">Cargando noticias...</div>
-</div> -->
+
 <section class="section">
   <h2>Noticias del Dia</h2>
   <div class="contenPosts">
     <mat-card *ngFor="let blog of blogs">
-    <div  >
-
-      <a  [routerLink]="'/blog/' + blog.id" >
-        
+      <div>
+        <a [routerLink]="'/blog/' + blog.id">
           <mat-card-content>
             <h2>{{ blog?.title }}</h2>
           </mat-card-content>
         </a>
         <div *ngIf="isUserLogde" class="buttonaction">
-          <button (click)="openUpdateDialog(blog?.id)"  mat-raised-button color="primary">Editar</button>
-          
-          <button (click)="deleteBlog(blog?.id)" mat-raised-button color="warn">Eliminar</button>
-          
+          <button
+            (click)="openUpdateDialog(blog?.id)"
+            mat-raised-button
+            color="primary"
+          >
+          <mat-icon>edit</mat-icon>
+          </button>
+
+          <button (click)="deleteBlog(blog?.id)" mat-raised-button color="warn">
+            <mat-icon>delete</mat-icon>
+          </button>
         </div>
       </div>
     </mat-card>
